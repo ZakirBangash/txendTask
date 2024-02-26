@@ -16,7 +16,6 @@ const Cart = ({navigation}) => {
     const params = {
       item,
     };
-    console.log('item', item);
 
     const navigateToUpdate = () => {
       navigation.navigate('updateQuantity', params);

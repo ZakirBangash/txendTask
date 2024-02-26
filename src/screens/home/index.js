@@ -3,7 +3,7 @@ import {Dimensions, FlatList, StyleSheet, Text, View} from 'react-native';
 
 import CustomHeader from '../../components/appHeader';
 import {AppPrimary, PrimaryWhite, SecondryWhite} from '../../constants/colors';
-import {APP_HEADER} from '../../constants/constants';
+import {APP_HEADER, HOME} from '../../constants/constants';
 import {useGetAllListQuery} from '../../services/products';
 import List from './List';
 
@@ -12,11 +12,11 @@ const Home = ({navigation}) => {
 
   const {data, error, isLoading} = useGetAllListQuery();
   if (isLoading) {
-    return <Text>Loading ....</Text>;
+    return <Text>{HOME.loading}</Text>;
   }
 
   if (error) {
-    return <Text>Error</Text>;
+    return <Text>{HOME.error}</Text>;
   }
 
   const renderItem = ({item}) => {

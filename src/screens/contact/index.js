@@ -1,11 +1,14 @@
 import React, {useCallback, useState} from 'react';
 import {View, Text, FlatList, TextInput, StyleSheet} from 'react-native';
 import useContacts from '../../hooks/useFetchContacts';
+import {CONTACTLIST} from '../../constants/constants';
+import {PrimaryWhite, SecondryWhite} from '../../constants/colors';
 
 const ContactList = () => {
   const {contacts, loading} = useContacts();
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredContacts, setFilteredContacts] = useState([]);
+  const keyExtractor = useCallback(r => r.id, []);
 
   const handleSearch = query => {
     setSearchQuery(query);
@@ -30,22 +33,22 @@ const ContactList = () => {
   );
 
   if (loading) {
-    return <Text>Loading...</Text>;
+    return <Text>{CONTACTLIST.loading}</Text>;
   }
 
   return (
     <View style={styles.container}>
       <TextInput
         style={styles.input}
-        placeholder="Search..."
+        placeholder={CONTACTLIST.search}
         onChangeText={handleSearch}
         value={searchQuery}
-        placeholderTextColor="#777"
+        placeholderTextColor={SecondryWhite}
       />
       <FlatList
         data={searchQuery ? filteredContacts : contacts}
         renderItem={renderItem}
-        keyExtractor={(item, index) => index.toString()}
+        keyExtractor={keyExtractor}
       />
     </View>
   );
@@ -70,7 +73,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     marginBottom: 10,
     fontSize: 16,
-    backgroundColor: '#f9f9f9',
+    backgroundColor: PrimaryWhite,
   },
   name: {
     fontSize: 18,

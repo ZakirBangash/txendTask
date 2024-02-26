@@ -3,6 +3,8 @@ import React, {useRef, useEffect} from 'react';
 import {View, Text, TouchableOpacity, StyleSheet, Animated} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {updateAuth} from '../../store/auth';
+import {LOGIN} from '../../constants/constants';
+import {AppBlue, PrimaryWhite} from '../../constants/colors';
 
 const LoginScreen = () => {
   const dispatch = useDispatch();
@@ -42,13 +44,13 @@ const LoginScreen = () => {
   return (
     <View style={styles.container}>
       <Animated.View style={[styles.loginContainer, {opacity: fadeInAnim}]}>
-        <Text style={styles.title}>Welcome</Text>
+        <Text style={styles.title}>{LOGIN.welcome}</Text>
         <Animated.View style={{transform: [{translateY: slideInAnim}]}}>
           <TouchableOpacity
             onPressIn={handlePressIn}
             onPressOut={handlePressOut}
             style={styles.loginButton}>
-            <Text style={styles.buttonText}>Login</Text>
+            <Text style={styles.buttonText}>{LOGIN.login}</Text>
           </TouchableOpacity>
         </Animated.View>
       </Animated.View>
@@ -66,7 +68,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: '100%',
     height: '100%',
-    backgroundColor: '#007bff',
+    backgroundColor: AppBlue,
     opacity: 0.7,
   },
   loginContainer: {
@@ -87,10 +89,10 @@ const styles = StyleSheet.create({
     fontSize: 32,
     fontWeight: 'bold',
     marginBottom: 20,
-    color: '#fff',
+    color: PrimaryWhite,
   },
   loginButton: {
-    backgroundColor: '#fff',
+    backgroundColor: PrimaryWhite,
     paddingHorizontal: 20,
     paddingVertical: 10,
     borderRadius: 5,
@@ -104,7 +106,7 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   buttonText: {
-    color: '#007bff',
+    color: AppBlue,
     fontSize: 16,
     fontWeight: 'bold',
   },
