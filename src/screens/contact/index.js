@@ -10,7 +10,7 @@ const ContactList = () => {
   const handleSearch = query => {
     setSearchQuery(query);
     const filtered = contacts.filter(contact =>
-      contact.name.toLowerCase().includes(query.toLowerCase()),
+      contact?.name?.toLowerCase()?.includes(query.toLowerCase()),
     );
     setFilteredContacts(filtered);
   };
@@ -34,12 +34,13 @@ const ContactList = () => {
   }
 
   return (
-    <View>
+    <View style={styles.container}>
       <TextInput
         style={styles.input}
         placeholder="Search..."
         onChangeText={handleSearch}
         value={searchQuery}
+        placeholderTextColor="#777"
       />
       <FlatList
         data={searchQuery ? filteredContacts : contacts}
@@ -51,16 +52,25 @@ const ContactList = () => {
 };
 
 const styles = StyleSheet.create({
-  input: {
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginBottom: 10,
-    paddingHorizontal: 10,
-  },
   itemContainer: {
     borderBottomWidth: 1,
     padding: 10,
+  },
+
+  container: {
+    flex: 1,
+    paddingTop: 20,
+    paddingHorizontal: 10,
+  },
+  input: {
+    height: 40,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderRadius: 5,
+    paddingHorizontal: 10,
+    marginBottom: 10,
+    fontSize: 16,
+    backgroundColor: '#f9f9f9',
   },
   name: {
     fontSize: 18,

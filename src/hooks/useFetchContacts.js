@@ -4,7 +4,7 @@ import {requestContactsPermission} from '../utils/RequestContactsPermission';
 
 const useContacts = () => {
   const [contacts, setContacts] = useState([]);
-  const [isLoading, setLoading] = useState(true); // Initialize loading state as true
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     const granted = requestContactsPermission();
@@ -19,7 +19,7 @@ const useContacts = () => {
     setContacts(allContacts);
     setLoading(false);
   };
-  return {contacts, isLoading}; // Return both contacts array and loading state
+  return {contacts, isLoading};
 };
 
 export default useContacts;

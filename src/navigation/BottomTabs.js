@@ -36,7 +36,7 @@ export default function BottomTabs({navigation}) {
           }}
         />
         <Tab.Screen
-          name="home"
+          name="Add"
           component={Home}
           options={{
             tabBarLabel: () => null,
